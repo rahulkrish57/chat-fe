@@ -11,6 +11,8 @@ import {
 } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { CiClock2 } from "react-icons/ci";
+import { MdDelete } from "react-icons/md";
+
 import { apiService } from "../../service/api.service";
 import "./poll.css";
 const Poll = ({
@@ -281,20 +283,16 @@ const Poll = ({
         </>
       ) : (
         <>
-          <Card className="poll-card">
-            <Card.Body>
-              <Card.Text>No Poll Yet! Create one Now!</Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="empty-poll">No Poll Yet! Create one Now!</div>
         </>
       )}
-      <Modal show={show} onHide={handleClose}>
+      <Modal className="modal-class" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add New Poll</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="formEmail">
+            <Form.Group controlId="formEmail" className="form-group">
               <Form.Label>Poll Title*</Form.Label>
               <Form.Control
                 type="text"
@@ -306,7 +304,7 @@ const Poll = ({
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formEmail">
+            <Form.Group controlId="formEmail" className="form-group">
               <Form.Label>Poll Description</Form.Label>
               <Form.Control
                 type="textarea"
@@ -318,33 +316,46 @@ const Poll = ({
                 onChange={handleChangePoll}
               />
             </Form.Group>
-            <Form.Group controlId="formEmail">
+            <Form.Group controlId="formEmail" className="form-group">
               <Form.Label>Options*</Form.Label>
               {pollOptions.map((singleOpt, i) => (
-                <>
-                  <Form.Control
-                    className="form mb-2"
-                    type="text"
-                    rows={3}
-                    name="name"
-                    value={singleOpt.name}
-                    placeholder={`Option ${i + 1}`}
-                    maxLength={350}
-                    onChange={(e) => handleChangePollOption(e, i)}
-                  />
-                  {i > 1 && (
-                    <Button
-                      variant="outline-danger"
-                      type="button"
-                      onClick={() => deletePollOption(i)}
-                    >
-                      🗑
-                    </Button>
+                <div>
+                  {i > 1 ? (
+                    <div className="opt-delete ">
+                      <Form.Control
+                        className="form mb-2"
+                        type="text"
+                        rows={3}
+                        name="name"
+                        value={singleOpt.name}
+                        placeholder={`Option ${i + 1}`}
+                        maxLength={350}
+                        onChange={(e) => handleChangePollOption(e, i)}
+                      />
+                      <Button
+                        className="text-danger floating-del"
+                        type="button"
+                        onClick={() => deletePollOption(i)}
+                      >
+                        <MdDelete />
+                      </Button>
+                    </div>
+                  ) : (
+                    <Form.Control
+                      className="form mb-2"
+                      type="text"
+                      rows={3}
+                      name="name"
+                      value={singleOpt.name}
+                      placeholder={`Option ${i + 1}`}
+                      maxLength={350}
+                      onChange={(e) => handleChangePollOption(e, i)}
+                    />
                   )}
-                </>
+                </div>
               ))}
               {pollOptions.length < 4 && (
-                <Button onClick={addNewPollOption}>Add</Button>
+                <Button onClick={addNewPollOption}>Add Options</Button>
               )}
             </Form.Group>
           </Form>

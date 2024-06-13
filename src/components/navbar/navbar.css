@@ -9,9 +9,7 @@
   background-color: azure;
 }
 .nav-leftArea {
-  justify-content: center;
-  display: flex;
-  gap: 10px;
+  background-color: azure;
  
 }
 
@@ -37,4 +35,11 @@
   color: red;
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+@media screen and (max-width: 767px) {
+  .nav-container {
+    width: 100%;
+    flex: 0 0 1;
+  }
 }

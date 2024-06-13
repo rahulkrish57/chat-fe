@@ -88,6 +88,7 @@ function App() {
             setAuth={setAuth}
             show={show}
             setShow={setShow}
+            setOpenComp={setOpenComp}
           />
           <Container fluid>
             {!isMobile ? (
@@ -142,12 +143,12 @@ function App() {
                 {openComp === "poll" && (
                   <>
                     <div className="poll close-mobile ">
-                      <div
+                      <Button
                         className="close-mobile-btn"
                         onClick={() => setOpenComp("")}
                       >
-                        <IoMdCloseCircle />
-                      </div>
+                        Back
+                      </Button>
                       <Poll
                         socket={socket}
                         user={user}
@@ -164,12 +165,12 @@ function App() {
                 {openComp === "chat" && (
                   <>
                     <div className="chat close-mobile">
-                      <div
+                      <Button
                         className="close-mobile-btn"
                         onClick={() => setOpenComp("")}
                       >
-                        <IoMdCloseCircle />
-                      </div>
+                        Back
+                      </Button>
                       <Chat
                         socket={socket}
                         user={user}

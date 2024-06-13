@@ -118,8 +118,8 @@ const Chat = ({ socket, user, username, userId, room, dateFormat }) => {
           })
         ) : (
           <>
-            <div className={"d-flex w-50"}>
-              <p className="mb-2">Start Conversation</p>
+            <div className={" empty-conv h-100"}>
+              <p className="mb-2">Start Conversation...</p>
             </div>
           </>
         )}
