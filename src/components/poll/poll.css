@@ -1,0 +1,22 @@
+.poll-container {
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  background-color: rgb(144, 221, 254);
+}
+
+.poll-card {
+  width: 400px;
+  margin: 20px auto;
+}
+.card-footer-main {
+  font-size: 1.2rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+}
+.card-footer-sub {
+  font-weight: 500;
+  font-size: 0.7rem;
+  font-family: monospace;
+  font-style: italic;
+  
+}
